@@ -3,7 +3,6 @@ module.exports = function zeros(expression) {
   const myArrDoub = [];
   let res = 0;
   let resDoub = 0;
-  let resDoubTwo = 0;
   let sumMyArr;
   let myExpression = expression.split('*');
   let myExpressionLength = myExpression.length;
@@ -26,10 +25,16 @@ module.exports = function zeros(expression) {
   sumMyArr = myArrDoub.reduce(function (sum, current) {
     return sum + parseInt(current);
   }, 0);
+  let trueArr = myArrDoub.map(num => {
+    return num % 2 == 0;
+  });
+  let sumTrueArr = trueArr.reduce(function (sum, current) {
+    return sum + current;
+  }, 0);
 
   for (let k = 0; k < myArrDoub.length; k++) {
     let numberDoub = myArrDoub[k];
-    if ((myArr.length == 0) && (sumMyArr % 2 !== 0) && (numberDoub % 2 !== 0) && (numberDoub > 10)) {
+    if ((myArr.length == 0) && (numberDoub % 2 !== 0) && (numberDoub > 10) && (sumTrueArr == 0)) {
       numberDoub = 0;
     } else {
       while (numberDoub > 0) {
@@ -42,5 +47,5 @@ module.exports = function zeros(expression) {
       }
     }
   }
-  return res + resDoub;
+  return res+resDoub;
 }
